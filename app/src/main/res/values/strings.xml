@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">PIPE</string>
+    <string name="bottomSheet_permission_requestPermission">Request Permission</string>
+    <string name="bottomSheet_permission_permissionRequirement">Permission requirement</string>
+    <string name="bottomSheet_permission_reasonWhy">Why?</string>
+    <string name="bottomSheet_permission_canUseWithoutPermission">It is able to use without permission</string>
+    <string name="bottomSheet_permission_requestNow">Request Now</string>
+    <string name="bottomSheet_permission_internet">Internet</string>
+    <string name="bottomSheet_permission_gps">GPS</string>
+
+    <string name="dock_item_community">커뮤니티</string>
+    <string name="dock_item_money">지원금</string>
+    <string name="dock_item_house">부동산</string>
+    <string name="dock_item_startup">스타트업</string>
+    <string name="dock_item_recruit">취업</string>
+    <string name="dock_item_setting">설정</string>
+
+    <string-array name="tab_title_money">
+        <item>정부지원금</item>
+        <item>장학금</item>
+        <item>활동지원금</item>
+    </string-array>
+
+    <string-array name="tab_title_house">
+        <item>청약,분양권</item>
+        <item>내집어디?</item>
+        <item>체크리스트</item>
+    </string-array>
+
+    <string-array name="tab_title_startup">
+        <item>대회</item>
+        <item>사무실</item>
+    </string-array>
+
+    <string-array name="tab_title_recruit">
+        <item>취업박람회</item>
+        <item>구인구직</item>
+    </string-array>
+    
+    <string name="apiDetailView_eventApplyPeriod">신청 기간</string>
+    <string name="apiDetailView_eventApplyHow">신청 방법</string>
+    <string name="apiDetailView_eventApplyProcess">신청 절차</string>
+    <string name="apiDetailView_eventTestWat">평가방법</string>
+    <string name="apiDetailView_eventSummary">개요</string>
+    <string name="apiDetailView_gender">성별</string>
+    <string name="apiDetailView_address">지역</string>
+    <string name="apiDetailView_jobState">취업상태</string>
+    <string name="apiDetailView_workPeriod">창업기간</string>
+    <string name="apiDetailView_major">전공분야</string>
+    <string name="apiDetailView_job">직업</string>
+    <string name="apiDetailView_age">연령대상</string>
+    <string name="apiDetailView_companyTitle">기관 명</string>
+    <string name="apiDetailView_companySupportContent">지원 내용</string>
+    <string name="apiDetailView_companyDepartment">담당 부서</string>
+    <string name="apiDetailView_companyDigit">연락처</string>
+    <string name="apiDetailView_companyEmail">이메일</string>
+    <string name="apiDetailView_url">자세히 보기</string>
+</resources>
