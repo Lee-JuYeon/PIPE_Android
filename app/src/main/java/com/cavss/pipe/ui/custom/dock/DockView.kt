@@ -22,6 +22,7 @@ import com.google.accompanist.pager.PagerState
 @Composable
 fun DockView(
     setList : List<DockModel>,
+    setModifier : Modifier,
     setSize : Map<String, Dp>,
     setState : PagerState
 ){
@@ -31,7 +32,7 @@ fun DockView(
         verticalAlignment = Alignment.CenterVertically,
 //        horizontalArrangement = Arrangement.SpaceAround,
         contentPadding = PaddingValues(horizontal = 0.dp),
-        modifier = Modifier
+        modifier = setModifier
             .padding(top = 2.dp)
             .size(
                 width = (setSize["width"] ?: 0.dp) - 10.dp,
@@ -40,7 +41,7 @@ fun DockView(
             .clip(
                 RoundedCornerShape(topEnd = 10.dp, topStart = 10.dp)
             )
-            .background(Color.Red)
+            .background(Color(0x85ffffff))
     ){
         items(setList){ model ->
             DockItemView(

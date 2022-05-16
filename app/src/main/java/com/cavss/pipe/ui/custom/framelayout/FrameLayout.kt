@@ -1,6 +1,8 @@
 package com.cavss.pipe.ui.custom.framelayout
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,23 +15,20 @@ import com.google.accompanist.pager.PagerState
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun FrameLayout(
-    setSize : Map<String, Dp>,
-    pageState : PagerState,
-    innerView : @Composable (Int) -> Unit
+    setModifier : Modifier,
+    setPageState : PagerState,
+    setInnerView : @Composable (Int) -> Unit
 ){
+
     HorizontalPager(
-        state = pageState,
-        modifier = Modifier
-            .size(
-                width = setSize["width"]!!,
-                height = setSize["height"]!!
-            )
+        state = setPageState,
+        modifier = setModifier
             .background(
                 Color.Transparent
             ),
         dragEnabled = false // 스크롤 방지
     ) { index ->
-        innerView(index)
+        setInnerView(index)
     }
 }
 

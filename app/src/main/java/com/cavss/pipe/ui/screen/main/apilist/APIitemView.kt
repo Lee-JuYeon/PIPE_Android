@@ -1,4 +1,4 @@
-package com.cavss.pipe.ui.screen.main.money.items
+package com.cavss.pipe.ui.screen.main.apilist
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,7 +16,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -25,10 +24,9 @@ import com.cavss.pipe.model.item.ApiDetailItemDTO
 import com.cavss.pipe.ui.custom.sheet.CustomSheetType
 import com.cavss.pipe.ui.custom.sheet.CustomSheetVM
 import com.cavss.pipe.ui.custom.sheet.inner.TitleWithContents
-import com.cavss.pipe.vm.APIVM
 
 @Composable
-fun MoneyItemGovernment(
+fun APIitemView(
     customSheetVM : CustomSheetVM,
     data : ApiDetailItemDTO,
     onClick : (ApiDetailItemDTO) -> Unit

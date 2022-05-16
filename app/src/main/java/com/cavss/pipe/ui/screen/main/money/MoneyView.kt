@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.Text
@@ -14,13 +13,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.dp
 import com.cavss.pipe.R
 import com.cavss.pipe.model.item.ApiDetailItemDTO
 import com.cavss.pipe.ui.custom.sheet.CustomSheetVM
-import com.cavss.pipe.ui.screen.main.money.items.MoneyItemActivity
-import com.cavss.pipe.ui.screen.main.money.items.MoneyItemGovernment
-import com.cavss.pipe.ui.screen.main.money.items.MoneyItemScholarship
+import com.cavss.pipe.ui.screen.main.apilist.APIListView
+import com.cavss.pipe.ui.screen.main.apilist.MoneyItemActivity
+import com.cavss.pipe.ui.screen.main.apilist.APIitemView
+import com.cavss.pipe.ui.screen.main.apilist.TabMoneyGovernment
 import com.cavss.pipe.vm.APIVM
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -31,11 +31,10 @@ import kotlinx.coroutines.launch
 @Composable
 fun MoneyView(
     customSheetVM : CustomSheetVM,
-    apiVM : APIVM
+    apiVM : APIVM,
+    setModifier: Modifier
 ) {
-    Column(
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally,
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Red)
@@ -53,6 +52,7 @@ fun MoneyView(
         TabRow(
             selectedTabIndex = tabIndex,
             modifier = Modifier
+                .align(Alignment.TopCenter)
         ) {
             tabData.forEachIndexed { index, text ->
                 Tab(
@@ -74,38 +74,34 @@ fun MoneyView(
         // PAGER
         HorizontalPager(
             state = pagerState,
-            dragEnabled = true
+            dragEnabled = true,
+            modifier = Modifier
+                .align(Alignment.TopCenter)
         ) { index : Int ->
             when(index){
                 0 -> { // 정부 지원금
-                    LazyColumn(
-                        verticalArrangement = Arrangement.Top,
-                        horizontalAlignment = Alignment.Start,
+//                    APIListView(
+//                        customSheetVM = customSheetVM,
+//                        apiVM = apiVM
+//                    )
+                    Text(
+                        text = "asdfasdfasdfasdfasdf test 111",
                         modifier = Modifier
-                            .background(Color.Transparent)
-                    ){
-                        items(apiVM.getAPImoneyGovernmentList.value!!){ item : ApiDetailItemDTO ->
-                            MoneyItemGovernment(
-                                customSheetVM = customSheetVM,
-                                data = item,
-                                onClick = {
-                                    apiVM.setCurrentData(it)
-                                }
-                            )
-                        }
-                    }
+                            .height(200.dp)
+                            .background(Color.Yellow)
+                    )
                 }
                 1 -> { // 장학금
-                    MoneyItemScholarship(
-                        customSheetVM = customSheetVM,
-                        apiVM = apiVM
-                    )
+//                    APIListView(
+//                        customSheetVM = customSheetVM,
+//                        apiVM = apiVM
+//                    )
                 }
                 2 -> { // 활동 지원금
-                    MoneyItemActivity(
-                        customSheetVM = customSheetVM,
-                        apiVM = apiVM
-                    )
+//                    APIListView(
+//                        customSheetVM = customSheetVM,
+//                        apiVM = apiVM
+//                    )
                 }
             }
         }
