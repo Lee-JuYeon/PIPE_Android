@@ -22,7 +22,6 @@ import com.google.accompanist.pager.PagerState
 @Composable
 fun DockView(
     setList : List<DockModel>,
-    setModifier : Modifier,
     setSize : Map<String, Dp>,
     setState : PagerState
 ){
@@ -30,9 +29,8 @@ fun DockView(
     // 메모리 관리가 들어간 lazyColumn
     LazyRow(
         verticalAlignment = Alignment.CenterVertically,
-//        horizontalArrangement = Arrangement.SpaceAround,
         contentPadding = PaddingValues(horizontal = 0.dp),
-        modifier = setModifier
+        modifier = Modifier
             .padding(top = 2.dp)
             .size(
                 width = (setSize["width"] ?: 0.dp) - 10.dp,

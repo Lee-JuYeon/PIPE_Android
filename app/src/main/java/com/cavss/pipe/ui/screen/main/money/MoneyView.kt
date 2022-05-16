@@ -1,6 +1,7 @@
 package com.cavss.pipe.ui.screen.main.money
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -31,13 +32,13 @@ import kotlinx.coroutines.launch
 @Composable
 fun MoneyView(
     customSheetVM : CustomSheetVM,
-    apiVM : APIVM,
-    setModifier: Modifier
+    apiVM : APIVM
 ) {
-    Box(
+    Column(
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Red)
     ) {
         val tabData = LocalContext.current.resources.getStringArray(R.array.tab_title_money)
         val pagerState = rememberPagerState(
@@ -51,8 +52,6 @@ fun MoneyView(
 
         TabRow(
             selectedTabIndex = tabIndex,
-            modifier = Modifier
-                .align(Alignment.TopCenter)
         ) {
             tabData.forEachIndexed { index, text ->
                 Tab(
@@ -75,20 +74,11 @@ fun MoneyView(
         HorizontalPager(
             state = pagerState,
             dragEnabled = true,
-            modifier = Modifier
-                .align(Alignment.TopCenter)
         ) { index : Int ->
             when(index){
                 0 -> { // 정부 지원금
-//                    APIListView(
-//                        customSheetVM = customSheetVM,
-//                        apiVM = apiVM
-//                    )
-                    Text(
-                        text = "asdfasdfasdfasdfasdf test 111",
-                        modifier = Modifier
-                            .height(200.dp)
-                            .background(Color.Yellow)
+                    APIListView(
+                        customSheetVM = customSheetVM
                     )
                 }
                 1 -> { // 장학금

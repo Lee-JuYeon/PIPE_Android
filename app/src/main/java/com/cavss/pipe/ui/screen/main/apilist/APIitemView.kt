@@ -71,17 +71,17 @@ fun APIitemView(
                 )
             )
 
-            TitleWithContents(
-                title = "지원내용",
-                contentList = listOf(
-                    "머시기 머시기 지원내용~",
-                    " - 머시기 머시기 지원내용~",
-                    " - 머시기 머시기 지원내용~",
-                    " - 머시기 머시기 지원내용~",
-                    " - 머시기 머시기 지원내용~",
-                    data.companySupportContent
-                )
-            )
+//            TitleWithContents(
+//                title = "지원내용",
+//                contentList = listOf(
+//                    "머시기 머시기 지원내용~",
+//                    " - 머시기 머시기 지원내용~",
+//                    " - 머시기 머시기 지원내용~",
+//                    " - 머시기 머시기 지원내용~",
+//                    " - 머시기 머시기 지원내용~",
+//                    data.companySupportContent
+//                )
+//            )
         }
 
         Image(

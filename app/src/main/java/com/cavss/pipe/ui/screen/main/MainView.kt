@@ -63,61 +63,63 @@ fun MainView(
             initialPage = 0,
         )
 
-        FrameLayout(
-            setModifier = Modifier
-                .size(
-                    width = maxWidth,
-                    height = heightBlock * 18
-                )
-                .background(Color.Transparent)
-                .align(Alignment.TopCenter),
-            setPageState = pagerState,
-            setInnerView = { index : Int ->
-                when(index){ // == pageState.currentPage
-                    0 -> {
-                        MoneyView( // 지원금 뷰
-                            customSheetVM = customSheetVM,
-                            apiVM = apiVM,
-                            setModifier = Modifier
-                        )
-                    }
-                    1 -> {
-                        HouseView( // 부동산 뷰
-                            customSheetVM = customSheetVM,
-                            apiVM = apiVM
-                        )
-                    }
-                    2 -> {
-                        StartUpView( // 스타트업 뷰
-                            customSheetVM = customSheetVM,
-                            apiVM = apiVM
-                        )
-                    }
-                    3 -> {
-                        RecruitView( // 취업 뷰
-                            customSheetVM = customSheetVM,
-                            apiVM = apiVM
-                        )
-                    }
-                    4 -> {
-                        SettingView( // 설정 뷰
-                            customSheetVM = customSheetVM
-                        )
+        Column(
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+        ) {
+            FrameLayout(
+                setModifier = Modifier
+                    .size(
+                        width = maxWidth,
+                        height = heightBlock * 18
+                    )
+                    .background(Color.Transparent),
+                setPageState = pagerState,
+                setInnerView = { index : Int ->
+                    when(index){ // == pageState.currentPage
+                        0 -> {
+                            MoneyView( // 지원금 뷰
+                                customSheetVM = customSheetVM,
+                                apiVM = apiVM
+                            )
+                        }
+                        1 -> {
+                            HouseView( // 부동산 뷰
+                                customSheetVM = customSheetVM,
+                                apiVM = apiVM
+                            )
+                        }
+                        2 -> {
+                            StartUpView( // 스타트업 뷰
+                                customSheetVM = customSheetVM,
+                                apiVM = apiVM
+                            )
+                        }
+                        3 -> {
+                            RecruitView( // 취업 뷰
+                                customSheetVM = customSheetVM,
+                                apiVM = apiVM
+                            )
+                        }
+                        4 -> {
+                            SettingView( // 설정 뷰
+                                customSheetVM = customSheetVM
+                            )
+                        }
                     }
                 }
-            }
-        )
+            )
 
-        DockView(
-            setList = DockModel.DOCK_LIST.dockList,
-            setModifier = Modifier
-                .align(Alignment.BottomCenter),
-            setSize = mapOf(
-                "width" to maxWidth,
-                "height" to heightBlock * 2
-            ),
-            setState = pagerState
-        )
+            DockView(
+                setList = DockModel.DOCK_LIST.dockList,
+                setSize = mapOf(
+                    "width" to maxWidth,
+                    "height" to heightBlock * 2
+                ),
+                setState = pagerState
+            )
+        }
 
         CustomSheet(
             vm = customSheetVM,

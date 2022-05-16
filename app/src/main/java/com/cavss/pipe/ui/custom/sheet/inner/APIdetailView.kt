@@ -82,7 +82,7 @@ fun TitleWithContents(
                 .padding(
                     start = 10.dp,
                     end = 10.dp
-                )
+                ),
         ){
             items(contentList){ contentString : String ->
                 Text(
