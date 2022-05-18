@@ -16,10 +16,12 @@ import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cavss.pipe.R
+import com.cavss.pipe.ui.custom.icontitle.IconTitle
 import com.cavss.pipe.util.colour.Colours
 import com.cavss.pipe.util.colour.ColoursPalleteType
 import com.cavss.pipe.util.colour.ColoursPurposeType
@@ -31,33 +33,32 @@ fun SettingThemeView() {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start,
         modifier = Modifier
-            .padding(horizontal = 10.dp)
+            .padding(20.dp)
             .animateContentSize(
                 animationSpec = tween(
                     durationMillis = 200,
                     easing = LinearEasing
                 )
             )
-            .padding(horizontal = 10.dp)
     ) {
-        Text(
-            text = stringResource(id = R.string.setting_theme),
-            color = Color.White,
-            maxLines = 1,
-            fontSize = 18.sp,
-            fontFamily = FontFamily(Font(R.font.noto_normal)),
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier
+        IconTitle(
+            setImage = R.drawable.ic_launcher_background,
+            setSize = 30,
+            setTitle = stringResource(id = R.string.setting_theme),
+            setTitleColour = Color.White,
+            setTitleSize = 20,
+            setModifier = Modifier
                 .clickable {
                     isExpendable.value = !isExpendable.value
                 }
-        )//Text (자세히 보기 타이틀)
+        )
 
         if (isExpendable.value){
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start,
                 modifier = Modifier
+                    .padding(start = 10.dp)
             ) {
                 palletItem(setType = ColoursPalleteType.PINK, setExpendable = isExpendable)
                 palletItem(setType = ColoursPalleteType.RED, setExpendable = isExpendable)
