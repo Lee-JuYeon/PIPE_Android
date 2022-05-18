@@ -1,5 +1,6 @@
 package com.cavss.pipe.util.colour
 
-enum class ColoursPalleteType(val palleteTitle : String) {
-    PURPLE(palleteTitle = "Amethyst")
+enum class ColoursPalleteType(val concept : String) {
+    PINK(concept = "PINK"),
+    RED(concept = "RED")
 }
