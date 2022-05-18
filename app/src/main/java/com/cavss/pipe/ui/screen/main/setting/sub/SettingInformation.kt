@@ -15,9 +15,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -89,6 +86,19 @@ fun SettingInformation() {
                 )
                 Text(
                     text = stringResource(id = R.string.setting_information_opensource),
+                    color = Color.White,
+                    maxLines = 1,
+                    fontSize = 18.sp,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .padding(top = 10.dp)
+                        .clickable {
+                            isExpendable.value = !isExpendable.value
+                            //TODO : 웹뷰로 이동
+                        }
+                )
+                Text(
+                    text = stringResource(id = R.string.setting_information_donate),
                     color = Color.White,
                     maxLines = 1,
                     fontSize = 18.sp,
