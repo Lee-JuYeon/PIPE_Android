@@ -32,9 +32,7 @@ import com.cavss.pipe.ui.screen.main.setting.sub.SettingThemeView
 import com.cavss.pipe.ui.screen.main.setting.sub.SettingTitleView
 
 @Composable
-fun SettingView(
-    customSheetVM : CustomSheetVM
-) {
+fun SettingView() {
     val optionList = LocalContext.current.resources.getStringArray(R.array.setting_options)
 
     Column(

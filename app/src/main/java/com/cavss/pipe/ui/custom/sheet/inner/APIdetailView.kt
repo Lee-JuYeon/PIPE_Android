@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cavss.pipe.R
 import com.cavss.pipe.model.item.ApiDetailItemDTO
+import com.cavss.pipe.ui.screen.main.money.tab.TitleWithContents
 
 @Composable
 fun APIdetailView(model : ApiDetailItemDTO) {
@@ -53,44 +54,4 @@ fun APIdetailView(model : ApiDetailItemDTO) {
                 //TODO 공유
             }
     )
-}
-
-@Composable
-fun TitleWithContents(
-    title : String,
-    contentList : List<String>
-){
-    Row(
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.Start,
-        modifier = Modifier
-    ) {
-        Text(
-            text = title,
-            color = Color.Black,
-            maxLines = 1,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .background(Color.Yellow)
-        )
-
-        LazyColumn(
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .padding(
-                    start = 10.dp,
-                    end = 10.dp
-                ),
-        ){
-            items(contentList){ contentString : String ->
-                Text(
-                    text = contentString,
-                    color = Color.Black,
-                    fontSize = 15.sp
-                )
-            }
-        }
-    }
 }

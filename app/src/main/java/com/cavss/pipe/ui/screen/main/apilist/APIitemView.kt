@@ -23,11 +23,10 @@ import com.cavss.pipe.R
 import com.cavss.pipe.model.item.ApiDetailItemDTO
 import com.cavss.pipe.ui.custom.sheet.CustomSheetType
 import com.cavss.pipe.ui.custom.sheet.CustomSheetVM
-import com.cavss.pipe.ui.custom.sheet.inner.TitleWithContents
+import com.cavss.pipe.ui.screen.main.money.tab.TitleWithContents
 
 @Composable
 fun APIitemView(
-    customSheetVM : CustomSheetVM,
     data : ApiDetailItemDTO,
     onClick : (ApiDetailItemDTO) -> Unit
 ) {
@@ -48,8 +47,8 @@ fun APIitemView(
                 .padding(10.dp)
                 .clickable {
                     //TODO bottomSheet로 자세히보기 구현.
-                    customSheetVM.setShowBottomSheetState(true)
-                    customSheetVM.setInnerViewType(CustomSheetType.API_DETAIL.type)
+                    CustomSheetVM.setShowBottomSheetState(true)
+                    CustomSheetVM.setInnerViewType(CustomSheetType.API_DETAIL.type)
                     onClick(data)
                 }
         ) {

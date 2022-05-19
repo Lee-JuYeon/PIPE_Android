@@ -56,7 +56,6 @@ fun SplashView(
 
 
     val isShowSheet = remember { mutableStateOf(true) }
-    val customSheetVM = CustomSheetVM()
     BoxWithConstraints(
         modifier = Modifier
             .fillMaxSize()
@@ -97,7 +96,6 @@ fun SplashView(
         when(0){
             0 -> {
                 CustomSheet(
-                    vm = customSheetVM,
                     onDismiss = {
                         Log.e("mException", "SplashView, CustomSheet, onDismiss // 사라짐~")
 //                        LocalLifecycleOwner.current.lifecycleScope.launch(Dispatchers.IO){

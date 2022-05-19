@@ -22,10 +22,7 @@ fun FrameLayout(
 
     HorizontalPager(
         state = setPageState,
-        modifier = setModifier
-            .background(
-                Color.Transparent
-            ),
+        modifier = setModifier,
         dragEnabled = false // 스크롤 방지
     ) { index ->
         setInnerView(index)

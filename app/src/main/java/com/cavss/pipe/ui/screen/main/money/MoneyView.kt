@@ -1,10 +1,7 @@
 package com.cavss.pipe.ui.screen.main.money
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.Text
@@ -16,12 +13,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.cavss.pipe.R
-import com.cavss.pipe.model.item.ApiDetailItemDTO
 import com.cavss.pipe.ui.custom.sheet.CustomSheetVM
+import com.cavss.pipe.ui.screen.main.apilist.APIListType
 import com.cavss.pipe.ui.screen.main.apilist.APIListView
-import com.cavss.pipe.ui.screen.main.apilist.MoneyItemActivity
-import com.cavss.pipe.ui.screen.main.apilist.APIitemView
-import com.cavss.pipe.ui.screen.main.apilist.TabMoneyGovernment
 import com.cavss.pipe.vm.APIVM
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -30,15 +24,13 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun MoneyView(
-    customSheetVM : CustomSheetVM,
-    apiVM : APIVM
-) {
+fun MoneyView() {
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
+            .border(3.dp, Color.Magenta)
     ) {
         val tabData = LocalContext.current.resources.getStringArray(R.array.tab_title_money)
         val pagerState = rememberPagerState(
@@ -77,21 +69,13 @@ fun MoneyView(
         ) { index : Int ->
             when(index){
                 0 -> { // 정부 지원금
-                    APIListView(
-                        customSheetVM = customSheetVM
-                    )
+                    APIListView(type = APIListType.MONEY_GOVERNMENT)
                 }
                 1 -> { // 장학금
-//                    APIListView(
-//                        customSheetVM = customSheetVM,
-//                        apiVM = apiVM
-//                    )
+                    APIListView(type = APIListType.MONEY_SCHOLARSHIP)
                 }
                 2 -> { // 활동 지원금
-//                    APIListView(
-//                        customSheetVM = customSheetVM,
-//                        apiVM = apiVM
-//                    )
+                    APIListView(type = APIListType.MONEY_ACTIVITY)
                 }
             }
         }
