@@ -32,13 +32,12 @@ import androidx.lifecycle.ViewModelProvider
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun CustomSheet(
-    vm : CustomSheetVM,
     INNER_VIEW : @Composable (Constraints) -> Unit,
     onDismiss : @Composable () -> Unit
 ) {
 
     AnimatedVisibility(
-        visible = vm.isShow.observeAsState().value!!,
+        visible = CustomSheetVM.isShow.observeAsState().value!!,
         enter = slideInVertically(
             // 오프셋이 -(전체높이)에서 0으로 슬라이딩 하며 내려간다.
             initialOffsetY = { fullHeight: Int -> fullHeight },
@@ -58,7 +57,7 @@ fun CustomSheet(
                     Color(0x85ffffff)
                 )
                 .clickable {
-                    vm.setShowBottomSheetState(false)
+                    CustomSheetVM.setShowBottomSheetState(false)
                 }
         ) {
             Column(
@@ -109,7 +108,7 @@ fun CustomSheet(
         }
     }
 
-    if (!vm.isShow.value!!){
+    if (!CustomSheetVM.isShow.value!!){
         onDismiss()
     }
 }
