@@ -45,7 +45,7 @@ fun DockItemView(
             .clip(RoundedCornerShape(corner = CornerSize(10.dp)))
             .background(
                 if (setModel.itemID == DockModel.DOCK_LIST.dockList[setState.currentPage].itemID) {
-                    setColour.copy(alpha = 0.2f)
+                    setColour.copy(alpha = 0.1f)
                 } else {
                     Color.Transparent
                 }
@@ -99,8 +99,9 @@ fun DockItemView(
         Image(
             painter = painterResource(id = setModel.itemImage),
             contentDescription = "",
-            contentScale = ContentScale.Crop,
+            contentScale = ContentScale.Fit,
             modifier = Modifier
+                .fillMaxSize()
         )
     }
 }
