@@ -60,8 +60,7 @@ fun MainView(
                     .size(
                         width = maxWidth,
                         height = heightBlock * 16
-                    )
-                    .background(Color.Blue),
+                    ),
                 setPageState = pagerState,
                 setInnerView = { index : Int ->
                     when(index){ // == pageState.currentPage

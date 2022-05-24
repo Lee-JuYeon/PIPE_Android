@@ -42,7 +42,7 @@ fun SettingThemeView() {
             )
     ) {
         IconTitle(
-            setImage = R.drawable.ic_launcher_background,
+            setImage = R.drawable.icon_theme,
             setSize = 30,
             setTitle = stringResource(id = R.string.setting_theme),
             setTitleColour = Color.White,

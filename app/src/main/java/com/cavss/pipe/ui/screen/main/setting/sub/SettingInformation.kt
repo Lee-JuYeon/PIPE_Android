@@ -39,7 +39,7 @@ fun SettingInformation() {
             )
     ) {
         IconTitle(
-            setImage = R.drawable.ic_launcher_background,
+            setImage = R.drawable.icon_information,
             setSize = 30,
             setTitle = stringResource(id = R.string.setting_information),
             setTitleColour = Color.White,

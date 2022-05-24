@@ -43,7 +43,7 @@ fun SettingBusinessView() {
             )
     ) {
         IconTitle(
-            setImage = R.drawable.ic_launcher_background,
+            setImage = R.drawable.icon_business_ask,
             setSize = 30,
             setTitle = stringResource(id = R.string.setting_business),
             setTitleColour = Color.White,

@@ -40,7 +40,6 @@ fun SettingView() {
         horizontalAlignment = Alignment.Start,
         modifier = Modifier
             .fillMaxSize()
-            .border(3.dp, Color.Magenta)
             .padding(10.dp)
     ){
         SettingTitleView() // 타이틀 뷰

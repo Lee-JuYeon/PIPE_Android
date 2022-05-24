@@ -18,7 +18,7 @@ import com.cavss.pipe.ui.custom.icontitle.IconTitle
 @Composable
 fun SettingTitleView() {
     IconTitle(
-        setImage = R.drawable.ic_launcher_background,
+        setImage = R.drawable.icon_settings,
         setSize = 40,
         setTitle = stringResource(id = R.string.setting_title),
         setTitleColour = Color.White,

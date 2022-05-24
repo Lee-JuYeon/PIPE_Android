@@ -16,10 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.cavss.pipe.R
-import com.cavss.pipe.ui.custom.sheet.CustomSheetVM
-import com.cavss.pipe.ui.screen.main.apilist.APIListType
-import com.cavss.pipe.ui.screen.main.apilist.APIListView
-import com.cavss.pipe.vm.APIVM
+import com.cavss.pipe.ui.custom.apilist.APIListType
+import com.cavss.pipe.ui.custom.apilist.APIListView
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
@@ -33,12 +31,7 @@ fun HouseView() {
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Red)
-            .border(3.dp, Color.Magenta)
     ) {
-        // 청약, 분양권
-        // 체크리스트
-        // 청년대상 주택
         val tabData = LocalContext.current.resources.getStringArray(R.array.tab_title_house)
         val pagerState = rememberPagerState(
             pageCount = tabData.size,
@@ -80,9 +73,6 @@ fun HouseView() {
                 }
                 1 -> { // 나에게 맞는 최적 조건의 집 찾기
                     APIListView(APIListType.HOUSE_MYHOME)
-                }
-                2 -> { // 체크리스트
-                    APIListView(APIListType.HOUSE_CHECKLIST)
                 }
             }
         }

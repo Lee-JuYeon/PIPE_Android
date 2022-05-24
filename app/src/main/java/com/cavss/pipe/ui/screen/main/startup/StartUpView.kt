@@ -16,10 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.cavss.pipe.R
-import com.cavss.pipe.ui.custom.sheet.CustomSheetVM
-import com.cavss.pipe.ui.screen.main.apilist.APIListType
-import com.cavss.pipe.ui.screen.main.apilist.APIListView
-import com.cavss.pipe.vm.APIVM
+import com.cavss.pipe.ui.custom.apilist.APIListType
+import com.cavss.pipe.ui.custom.apilist.APIListView
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
@@ -33,8 +31,6 @@ fun StartUpView() {
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Cyan)
-            .border(3.dp, Color.Magenta)
     ) {
         // 스타트업 대회
         // 스타트업 사무실
