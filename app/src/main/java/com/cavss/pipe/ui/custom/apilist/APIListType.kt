@@ -1,4 +1,4 @@
-package com.cavss.pipe.ui.screen.main.apilist
+package com.cavss.pipe.ui.custom.apilist
 
 enum class APIListType(val type : String) {
     MONEY_GOVERNMENT(type = "MONEY_GOVERNMENT"),

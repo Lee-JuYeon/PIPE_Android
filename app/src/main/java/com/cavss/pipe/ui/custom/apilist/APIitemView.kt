@@ -1,4 +1,4 @@
-package com.cavss.pipe.ui.screen.main.apilist
+package com.cavss.pipe.ui.custom.apilist
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,7 +23,6 @@ import com.cavss.pipe.R
 import com.cavss.pipe.model.item.ApiDetailItemDTO
 import com.cavss.pipe.ui.custom.sheet.CustomSheetType
 import com.cavss.pipe.ui.custom.sheet.CustomSheetVM
-import com.cavss.pipe.ui.screen.main.money.tab.TitleWithContents
 
 @Composable
 fun APIitemView(
@@ -48,7 +47,7 @@ fun APIitemView(
                 .clickable {
                     //TODO bottomSheet로 자세히보기 구현.
                     CustomSheetVM.setShowBottomSheetState(true)
-                    CustomSheetVM.setInnerViewType(CustomSheetType.API_DETAIL.type)
+                    CustomSheetVM.setInnerViewType(CustomSheetType.API_DETAIL)
                     onClick(data)
                 }
         ) {
@@ -70,17 +69,17 @@ fun APIitemView(
                 )
             )
 
-//            TitleWithContents(
-//                title = "지원내용",
-//                contentList = listOf(
-//                    "머시기 머시기 지원내용~",
-//                    " - 머시기 머시기 지원내용~",
-//                    " - 머시기 머시기 지원내용~",
-//                    " - 머시기 머시기 지원내용~",
-//                    " - 머시기 머시기 지원내용~",
-//                    data.companySupportContent
-//                )
-//            )
+            TitleWithContents(
+                title = "지원내용",
+                contentList = listOf(
+                    "머시기 머시기 지원내용~",
+                    " - 머시기 머시기 지원내용~",
+                    " - 머시기 머시기 지원내용~",
+                    " - 머시기 머시기 지원내용~",
+                    " - 머시기 머시기 지원내용~",
+                    data.companySupportContent
+                )
+            )
         }
 
         Image(
