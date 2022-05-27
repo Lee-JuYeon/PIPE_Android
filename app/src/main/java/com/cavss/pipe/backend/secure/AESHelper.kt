@@ -21,7 +21,7 @@ import javax.crypto.spec.SecretKeySpec
 object AESHelper {
     /** 키를 외부에 저장할 경우 유출 위험이 있으니까 소스 코드 내에 숨겨둔다. 길이는 16자여야 한다. */
 
-    private val ALLIAS = "AsgardHeimdallr" // 키스토어 에서 사용할 별칭
+    private val ALLIAS = "CAVSS" // 키스토어 에서 사용할 별칭
     private var keyGenerator: KeyGenerator? = null
     private var keyGenParameterSpec: KeyGenParameterSpec? = null
     private const val AndroidKeyStore = "AndroidKeyStore"

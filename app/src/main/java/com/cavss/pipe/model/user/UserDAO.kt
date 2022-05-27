@@ -19,6 +19,7 @@ interface UserDAO {
     @Query("update UserDTO set colourTheme = :newColourTheme where id = 0")
     suspend fun updateColourTheme(newColourTheme : HashMap<String, ByteArray>)
 
-    fun updateIDPW()
-    fun updateUserInfo()
+    @Query("update UserDTO set pw = :newPW where id = 0")
+    suspend fun updatePW(newPW : HashMap<String, ByteArray>)
+
 }

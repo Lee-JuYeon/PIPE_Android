@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -63,7 +64,15 @@ dependencies {
     // lifecycle vm
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     implementation 'androidx.compose.runtime:runtime-livedata:1.0.5'
+
+    var roomVersion = "2.4.2"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.room:room-guava:$roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
 
     // accompanist (permission request)
     implementation "com.google.accompanist:accompanist-permissions:0.15.0"
@@ -84,7 +93,6 @@ dependencies {
     // Gson
     implementation 'com.google.code.gson:gson:2.8.5'
 
-    // data store
-    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha05"
-    implementation "androidx.datastore:datastore-core:1.0.0-alpha01"
+    // Admob
+    implementation 'com.google.android.gms:play-services-ads:20.6.0'
 }
