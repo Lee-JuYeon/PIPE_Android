@@ -7,6 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.cavss.pipe.App
 import com.cavss.pipe.backend.secure.AESHelper
 import com.cavss.pipe.model.user.UserDAO
 import com.cavss.pipe.model.user.UserDTO
@@ -29,6 +30,70 @@ abstract class RoomDB : RoomDatabase() {
     // 파라미터를 받는 싱글톤 클래스를 만들려면 companion obejct를 이용한다.
     companion object{
         @Volatile private var INSTANCE : RoomDB? = null
+        private var DB_name : String = "RoomDB"
+        private var context : Context? = null
+        fun setInstance(_context: Context) {
+            var instance = INSTANCE
+            when(instance == null){
+                true -> {
+                    instance = getDB()
+                    context = _context
+                    instance
+                }
+                false -> {
+                    context = _context
+                    instance
+                }
+            }
+        }
+
+        fun getDB(): RoomDB{
+            return INSTANCE ?: synchronized(this){
+                INSTANCE ?: Room.databaseBuilder(
+                    context ?: App.INSTANCE.applicationContext,
+                    RoomDB::class.java,
+                    DB_name
+                ).addCallback(object : RoomDatabase.Callback() {
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        super.onCreate(db)
+                        ioThread {
+                            try {
+                                val encryptedEmail  = AESHelper.keystoreEncrypt("email".toByteArray(Charsets.UTF_8))
+                                val encryptedPW  = AESHelper.keystoreEncrypt("pw".toByteArray(Charsets.UTF_8))
+                                val encryptedColourTheme  = AESHelper.keystoreEncrypt("PINK".toByteArray(Charsets.UTF_8))
+                                val encryptedUserUID = AESHelper.keystoreEncrypt("userUID_${UUID.randomUUID()}".toByteArray(Charsets.UTF_8))
+                                INSTANCE?.userDAO()?.insert(
+                                    UserDTO(
+                                        email = encryptedEmail,
+                                        pw = encryptedPW,
+                                        autoLogin = false,
+                                        colourTheme = encryptedColourTheme,
+                                        userUID = encryptedUserUID
+                                    )
+                                )
+                            }catch (e:Exception){
+                                Log.e("mException", "RoomDB, setInstance, addCallBack, ioThread // Exception : ${e.message}")
+                            }
+                        }
+                    }})
+                    .fallbackToDestructiveMigration()
+                    .build()
+            }
+        }
+
+        private val IO_EXECUTOR = Executors.newSingleThreadExecutor()
+        private fun ioThread(f : () -> Unit) {
+            IO_EXECUTOR.execute(f)
+        }
+
+        fun destroyDataBase(){
+            INSTANCE = null
+        }
+    }
+}
+
+/*
+@Volatile private var INSTANCE : RoomDB? = null
         private var DB_name : String = "RoomDB"
         private var context : Context? = null
         fun setInstance(_context: Context): RoomDB {
@@ -75,24 +140,4 @@ abstract class RoomDB : RoomDatabase() {
                 }
             }
         }
-
-        fun INSTANCE(): RoomDB{
-            return INSTANCE ?: synchronized(this){
-                INSTANCE ?: Room.databaseBuilder(
-                    context!!,
-                    RoomDB::class.java,
-                    DB_name
-                ).fallbackToDestructiveMigration().build()
-            }
-        }
-
-        private val IO_EXECUTOR = Executors.newSingleThreadExecutor()
-        private fun ioThread(f : () -> Unit) {
-            IO_EXECUTOR.execute(f)
-        }
-
-        fun destroyDataBase(){
-            INSTANCE = null
-        }
-    }
-}
+ */

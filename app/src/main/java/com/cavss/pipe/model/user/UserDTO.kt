@@ -28,6 +28,6 @@ data class UserDTO (
     var id : Int = 0
 
     override fun toString() : String{
-        return "${id}"
+        return " id : ${id}\n email : ${email}\n pw : ${pw}\n autoLogin : ${autoLogin}\n colourTheme : ${colourTheme}\n userUID : ${userUID}"
     }
 }
