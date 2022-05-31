@@ -42,26 +42,13 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private var dbVM : DBVM = ViewModelProvider()
+    private var dbVM : DBVM? = null
     private fun setPrepare() {
         try {
             // DB
             App.INSTANCE
-            RoomDB.setInstance(App.INSTANCE.applicationContext)
+            dbVM = DBVM(this@MainActivity)
 
-            dbVM.value.getUserDTO().observe(this, Observer {  userDTO : UserDTO ->
-                try {
-                    Log.e("mException", "저장된 데이터 : ${userDTO}")
-                }catch (e:Exception){
-                    /*
-                    Cannot access database on the main thread since it may potentially lock the UI for a long period of time.
-                    = 메인 UI 화면이 오랫동안 멈춰있을 수도 있기 때문에, 메인 쓰레드에서는 데이터베이스에 접근할 수 없습니다 -> lifecycleScope.launch(Dispatchers.IO) 이용
-                     */
-                    Log.e("mException", "MainActivity, setPrepare, dbVM // Exception : ${e.message}")
-                }catch (e:NoSuchElementException){
-                    Log.e("mException", "MainActivity, setPrepare, dbVM // NoSuchElementException : ${e.message}")
-                }
-            })
 
             // 광고
             MobileAds.initialize(this@MainActivity)

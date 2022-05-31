@@ -25,66 +25,28 @@ import java.util.concurrent.Executors
 @TypeConverters(TypeConverting::class)
 abstract class RoomDB : RoomDatabase() {
 
-    abstract fun userDAO() : UserDAO
+    abstract fun userDAO(): UserDAO
 
     // 파라미터를 받는 싱글톤 클래스를 만들려면 companion obejct를 이용한다.
-    companion object{
-        @Volatile private var INSTANCE : RoomDB? = null
-        private var DB_name : String = "RoomDB"
-        private var context : Context? = null
-        fun setInstance(_context: Context) {
-            var instance = INSTANCE
-            when(instance == null){
-                true -> {
-                    instance = getDB()
-                    context = _context
-                    instance
-                }
-                false -> {
-                    context = _context
-                    instance
-                }
+    companion object {
+        @Volatile
+        private var INSTANCE: RoomDB? = null
+        fun setInstance(_context: Context): RoomDB {
+            return INSTANCE ?: synchronized(this) {
+                INSTANCE ?: buildDatabase(_context).also { INSTANCE = it }
             }
         }
 
-        fun getDB(): RoomDB{
-            return INSTANCE ?: synchronized(this){
-                INSTANCE ?: Room.databaseBuilder(
-                    context ?: App.INSTANCE.applicationContext,
-                    RoomDB::class.java,
-                    DB_name
-                ).addCallback(object : RoomDatabase.Callback() {
-                    override fun onCreate(db: SupportSQLiteDatabase) {
-                        super.onCreate(db)
-                        ioThread {
-                            try {
-                                val encryptedEmail  = AESHelper.keystoreEncrypt("email".toByteArray(Charsets.UTF_8))
-                                val encryptedPW  = AESHelper.keystoreEncrypt("pw".toByteArray(Charsets.UTF_8))
-                                val encryptedColourTheme  = AESHelper.keystoreEncrypt("PINK".toByteArray(Charsets.UTF_8))
-                                val encryptedUserUID = AESHelper.keystoreEncrypt("userUID_${UUID.randomUUID()}".toByteArray(Charsets.UTF_8))
-                                INSTANCE?.userDAO()?.insert(
-                                    UserDTO(
-                                        email = encryptedEmail,
-                                        pw = encryptedPW,
-                                        autoLogin = false,
-                                        colourTheme = encryptedColourTheme,
-                                        userUID = encryptedUserUID
-                                    )
-                                )
-                            }catch (e:Exception){
-                                Log.e("mException", "RoomDB, setInstance, addCallBack, ioThread // Exception : ${e.message}")
-                            }
-                        }
-                    }})
-                    .fallbackToDestructiveMigration()
-                    .build()
-            }
+        private var DB_name: String = "RoomDB"
+        private fun buildDatabase(_context: Context): RoomDB {
+            return Room.databaseBuilder(
+                _context,
+                RoomDB::class.java,
+                DB_name
+            ).fallbackToDestructiveMigration().build()
         }
 
-        private val IO_EXECUTOR = Executors.newSingleThreadExecutor()
-        private fun ioThread(f : () -> Unit) {
-            IO_EXECUTOR.execute(f)
-        }
+        fun getDB(): RoomDB = INSTANCE!!
 
         fun destroyDataBase(){
             INSTANCE = null
