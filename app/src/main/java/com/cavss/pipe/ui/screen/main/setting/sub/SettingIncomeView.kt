@@ -7,6 +7,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -24,7 +26,7 @@ import com.cavss.pipe.R
 import com.cavss.pipe.ui.custom.icontitle.IconTitle
 
 @Composable
-fun SettingBusinessView() {
+fun SettingIncomeView() {
     val isExpendable = remember{ mutableStateOf(false) }
     Column(
         verticalArrangement = Arrangement.Top,
@@ -39,9 +41,9 @@ fun SettingBusinessView() {
             )
     ) {
         IconTitle(
-            setImage = R.drawable.icon_business_ask,
+            setImage = R.drawable.icon_bill,
             setSize = 30,
-            setTitle = stringResource(id = R.string.setting_business),
+            setTitle = stringResource(id = R.string.setting_income),
             setTitleColour = Color.White,
             setTitleSize = 20,
             setModifier = Modifier
@@ -58,7 +60,7 @@ fun SettingBusinessView() {
                     .padding(start = 10.dp)
             ) {
                 Text(
-                    text = stringResource(id = R.string.setting_business_email),
+                    text = stringResource(id = R.string.setting_income),
                     color = Color.White,
                     maxLines = 1,
                     fontSize = 20.sp,

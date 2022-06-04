@@ -69,7 +69,6 @@ fun SettingThemeView() {
 
 @Composable
 fun palletItem(setType : ColoursPalleteType, setExpendable : MutableState<Boolean>){
-    val colours = Colours()
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start,
@@ -96,27 +95,27 @@ fun palletItem(setType : ColoursPalleteType, setExpendable : MutableState<Boolea
         ) {
             Box(
                 modifier = Modifier
-                    .background(colours.getColourList(setType)[ColoursPurposeType.BACKGROUND]!!)
+                    .background(Colours.getColourList(setType)[ColoursPurposeType.BACKGROUND]!!)
                     .size(20.dp)
             )
             Box(
                 modifier = Modifier
-                    .background(colours.getColourList(setType)[ColoursPurposeType.FIRST_POINT]!!)
+                    .background(Colours.getColourList(setType)[ColoursPurposeType.FIRST_POINT]!!)
                     .size(20.dp)
             )
             Box(
                 modifier = Modifier
-                    .background(colours.getColourList(setType)[ColoursPurposeType.SECOND_POINT]!!)
+                    .background(Colours.getColourList(setType)[ColoursPurposeType.SECOND_POINT]!!)
                     .size(20.dp)
             )
             Box(
                 modifier = Modifier
-                    .background(colours.getColourList(setType)[ColoursPurposeType.DARKNESS]!!)
+                    .background(Colours.getColourList(setType)[ColoursPurposeType.DARKNESS]!!)
                     .size(20.dp)
             )
             Box(
                 modifier = Modifier
-                    .background(colours.getColourList(setType)[ColoursPurposeType.LIGHTNESS]!!)
+                    .background(Colours.getColourList(setType)[ColoursPurposeType.LIGHTNESS]!!)
                     .size(20.dp)
             )
         }
